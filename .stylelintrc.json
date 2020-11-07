@@ -1,0 +1,9 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-idiomatic-order"],
+  "rules": {
+    "font-family-no-missing-generic-family-keyword": [
+      true,
+      { "ignoreFontFamilies": ["hero-new", "neue-haas-unica"] }
+    ]
+  }
+}

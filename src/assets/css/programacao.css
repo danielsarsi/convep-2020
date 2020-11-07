@@ -1,0 +1,119 @@
+#programacao {
+  margin: 9rem auto;
+  line-height: 1.5;
+}
+
+#programacao .dia {
+  max-width: 18rem;
+  margin: 6rem auto;
+}
+
+#programacao .dia .data {
+  font-weight: 500;
+}
+
+#programacao .atividades li {
+  margin: 3rem 0;
+}
+
+#programacao .atividades li:last-child {
+  margin-bottom: 0;
+}
+
+#programacao .atividades .horario,
+#programacao .atividades .tipo {
+  display: block;
+}
+
+#programacao .atividades .horario {
+  font-weight: 500;
+}
+
+#programacao .atividades .tipo {
+  font-weight: 400;
+}
+
+#programacao .atividades a {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 300;
+}
+
+#programacao .atividades a:last-child {
+  margin-bottom: 0;
+}
+
+.atividade-tipo {
+  max-width: 36rem;
+  margin: 18rem auto;
+}
+
+.atividade-tipo h2,
+.atividade-tipo h3 {
+  margin: 0;
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+
+.atividade-tipo h3 {
+  margin: 1rem 0;
+  scroll-margin-top: 2rem;
+}
+
+.atividade-tipo footer time {
+  display: grid;
+  gap: 0.75rem;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+}
+
+.atividade-tipo footer .convidados {
+  display: grid;
+  margin: 3rem 0;
+  gap: 1rem;
+}
+
+.atividade-tipo footer address {
+  font-style: normal;
+}
+
+.atividade-tipo footer address .nome {
+  font-weight: 400;
+}
+
+.atividade-tipo footer address p {
+  margin: 0.5rem 0;
+}
+
+.atividade-tipo article {
+  margin: 8rem 0;
+}
+
+#ancora {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#ancora.mostrar {
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  #programacao {
+    display: grid;
+    justify-content: center;
+    gap: 6rem 3rem;
+    grid-template-columns: auto auto;
+  }
+
+  #programacao .dia {
+    margin: 0;
+  }
+}

@@ -1,0 +1,142 @@
+@import "../../vendor/remedy.css";
+
+:root {
+  --branco: #bababa;
+  --cinza: #323232;
+  --preto: #0e0e0e;
+}
+
+html {
+  background-color: var(--branco);
+  color: var(--cinza);
+  font-family: neue-haas-unica;
+  font-weight: 300;
+  line-height: 2;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: hero-new;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+a:link {
+  color: var(--cinza);
+  font-weight: 500;
+  transition: color 0.1s ease;
+}
+
+a:visited {
+  color: var(--cinza);
+}
+
+a:active {
+  color: var(--preto);
+}
+
+ol,
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+figure {
+  margin: 0;
+}
+
+header {
+  margin: 8rem auto;
+}
+
+header figure {
+  height: 6rem;
+}
+
+header img {
+  height: 100%;
+  margin: 0 auto;
+}
+
+nav {
+  max-width: 18rem;
+  margin: 3rem auto;
+  font-family: hero-new;
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+
+nav li {
+  margin: 0.5rem 0;
+}
+
+nav li a:link {
+  text-decoration: none;
+}
+
+nav a:link[aria-current] {
+  text-decoration: underline;
+}
+
+.hero {
+  max-width: 30rem;
+  margin: 18rem auto;
+}
+
+main {
+  margin: 0 3rem;
+}
+
+main + footer {
+  margin: 0 3rem;
+  margin-top: 18rem;
+  color: #707070;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+main + footer p {
+  margin: 1rem 0;
+}
+
+main + footer > svg {
+  height: 10px;
+  margin: 0 auto;
+}
+
+#redes-sociais {
+  display: grid;
+  height: 2rem;
+  justify-content: center;
+  margin: 4rem 0;
+  gap: 2.75rem;
+  grid-auto-flow: column;
+}
+
+#redes-sociais li,
+#redes-sociais img {
+  height: 100%;
+}
+
+#apoio {
+  display: grid;
+  height: 4rem;
+  justify-content: center;
+  margin: 6rem 0;
+  gap: 3rem;
+  grid-auto-flow: column;
+}
+
+#apoio li {
+  height: 100%;
+}
+
+#apoio img {
+  height: 100%;
+}
