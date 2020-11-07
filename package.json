@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Site do CONVEP 2020.",
   "private": true,
+  "repository": "https://github.com/danielsarsi/convep-2020",
   "scripts": {
     "serve": "serve dist/",
     "build": "gulp",
