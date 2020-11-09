@@ -22,7 +22,7 @@ function css() {
 }
 
 function html() {
-  var plugins = [require("htmlnano")()];
+  var plugins = [require("htmlnano")({ minifySvg: false })];
 
   return src("./src/**/*.html").pipe(posthtml(plugins)).pipe(dest("./dist"));
 }
