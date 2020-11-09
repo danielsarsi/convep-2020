@@ -18,7 +18,7 @@ jobs:
           npm install
           npm run build
           cd dist
-          zip -r dist.zip *
+          zip -r ../dist.zip *
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
