@@ -1,0 +1,210 @@
+.texto {
+  max-width: 30rem;
+  margin: 9rem auto;
+}
+
+form label p {
+  margin: 0;
+}
+
+.texto p {
+  margin: 3rem 0;
+}
+
+#inscricao {
+  padding: 6rem 3rem;
+  margin: 6rem -3rem;
+  background-color: #fff;
+}
+
+form {
+  display: grid;
+  gap: 3rem;
+  grid-auto-flow: row;
+}
+
+form fieldset {
+  width: 100%;
+  max-width: 18rem;
+  padding: 0;
+  border: none;
+  margin: 0 auto;
+}
+
+form legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+
+  /* margin-left: 1rem; */
+  font-weight: 400;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  transition: color 0.15s ease;
+}
+
+form input[type=text],
+form select {
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px solid var(--branco);
+  margin: 1rem 0;
+  appearance: none;
+  background-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: inherit;
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+form select {
+  background-image: url(../img/select.svg);
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: 10px 5px;
+}
+
+form option {
+  appearance: none;
+  color: inherit;
+  font-family: inherit, sans-serif;
+  font-weight: inherit;
+}
+
+form input[type=text]:focus {
+  border-bottom-color: var(--cinza);
+  outline: none;
+}
+
+form input[type=text]::placeholder {
+  color: var(--branco);
+}
+
+form label.erro {
+  color: #f44f4f;
+}
+
+form label.erro input[type=text] {
+  border-color: #f44f4f;
+}
+
+form label.desativado {
+  color: var(--branco);
+}
+
+form label.desativado input[type=text] {
+  border-color: #e2e2e2;
+  background-color: transparent;
+}
+
+form label.checkbox {
+  display: grid;
+  align-items: flex-start;
+  margin: 2rem 0;
+  gap: 1rem;
+  grid-template-columns: auto 1fr;
+  line-height: 1.5;
+}
+
+form input[type=checkbox] {
+  margin: 0;
+  margin-top: 6px;
+}
+
+form label.esgotado {
+  color: var(--branco);
+  text-decoration: line-through;
+}
+
+form button {
+  display: block;
+  width: 100%;
+  max-width: 18rem;
+  padding: 1rem;
+  border: none;
+  margin: 0 auto;
+  background-color: var(--cinza);
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 400;
+  transition: color 0.125s ease;
+}
+
+form button.carregando {
+  position: relative;
+  color: transparent;
+}
+
+form button.carregando::before {
+  position: absolute;
+  top: calc(50% - 9px);
+  left: calc(50% - 9px);
+  width: 18px;
+  height: 18px;
+  border: 2px dotted #fff;
+  margin: auto;
+  animation: indicador 3s linear infinite;
+  border-radius: 100%;
+  content: "";
+}
+
+.carregamento {
+  width: 18px;
+  height: 18px;
+  border: 2px dotted var(--cinza);
+  margin: 2rem 0;
+  animation: indicador 3s linear infinite;
+  border-radius: 100%;
+}
+
+@keyframes indicador {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+p.erro {
+  width: 18rem;
+  margin: 0 auto;
+  color: #f44f4f;
+}
+
+.recursos {
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  /* main {
+    display: grid;
+    justify-content: center;
+    gap: 3rem;
+    grid-template-columns: auto auto;
+  } */
+
+  /* .texto {
+    display: grid;
+    justify-content: center;
+    gap: 3rem;
+    grid-template-columns: auto auto;
+  } */
+
+  /* .texto p {
+    margin: 0;
+  } */
+
+  /* form {
+    padding: 3rem;
+    margin: 0;
+    border-radius: 8px;
+  } */
+}

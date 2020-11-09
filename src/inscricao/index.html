@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="theme-color" content="#323232" />
+
+    <link rel="preconnect" href="https://use.typekit.net/" />
+    <link rel="dns-prefetch" href="https://use.typekit.net/" />
+
+    <link rel="stylesheet" href="https://use.typekit.net/ybe8vsh.css" />
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../assets/css/inscricao.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <title>
+      4&ordm; Congresso Vertentes da Psicologia (CONVEP 2020) - Inscrição
+    </title>
+    <meta
+      name="description"
+      content="Inscrição do CONVEP 2020. Participe do evento e das oficinas."
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="og:title"
+      content="4&ordm; Congresso Vertentes da Psicologia (CONVEP 2020) - Inscrição"
+    />
+    <meta
+      property="og:description"
+      content="Inscrição do CONVEP 2020. Participe do evento e das oficinas."
+    />
+    <meta name="og:image" content="https://convep.org/assets/img/og.png" />
+    <meta name="og:image:width" content="1200" />
+    <meta name="og:image:height" content="630" />
+
+    <script src="../assets/js/inscricao.js" defer></script>
+    <script src="../vendor/alpine.min.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <figure>
+        <img
+          src="../assets/img/simbolo.png"
+          alt="4&ordm; Congresso Vertentes da Psicologia (CONVEP 2020)"
+          srcset="
+            ../assets/img/simbolo@2x.png 2x,
+            ../assets/img/simbolo@3x.png 3x
+          "
+        />
+      </figure>
+      <nav>
+        <ul>
+          <li><a href="/">Início</a></li>
+          <li>
+            <a href="/programacao/">Programação</a>
+          </li>
+          <li>
+            <a aria-current href="/inscricao/">Inscrição</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="texto">
+        <p>
+          Nossa inscrição possibilita a emissão de certificados de participação
+          do evento e das oficinas, condicionada a sua presença. Os certificados
+          serão enviados posteriormente por e-mail.
+        </p>
+        <p>
+          As mesas redondas serão abertas e transmitidas ao vivo pelo nosso
+          <a
+            href="https://www.youtube.com/channel/UCUpuRnUQFqYRsI6Yb4b-j-Q"
+            target="_blank"
+            rel="noopener noreferrer"
+            >canal do YouTube</a
+          >.
+        </p>
+        <p>
+          As oficinas serão fechadas e com vagas limitadas. É necessário a
+          inscrição para participar. Atente-se aos materiais necessários para
+          participar das oficinas na página de
+          <a href="/programacao/">programação</a>.
+        </p>
+        <p>
+          Qualquer dúvida, nos envie um e-mail em
+          <a href="mailto:convep@ufsj.edu.br">convep@ufsj.edu.br</a>.
+        </p>
+      </section>
+
+      <section id="inscricao" x-data="inscricao()" x-init="init()">
+        <template x-if="!sucesso">
+          <form novalidate x-on:submit.prevent="enviar()">
+            <fieldset>
+              <legend>Dados pessoais</legend>
+
+              <label
+                for="name"
+                x-bind:class="{ erro: erros.nome && tocado.nome }"
+              >
+                Nome
+                <input
+                  type="text"
+                  id="name"
+                  autocomplete="name"
+                  x-model="formulario.nome"
+                  x-on:input="validar('nome')"
+                  x-on:focusout="tocar('nome')"
+                />
+                <template x-if="erros.nome && tocado.nome">
+                  <p x-text="erros.nome"></p>
+                </template>
+              </label>
+
+              <label
+                for="email"
+                x-bind:class="{ erro: erros.email && tocado.email }"
+              >
+                E-mail
+                <input
+                  type="text"
+                  id="email"
+                  autocomplete="email"
+                  x-model="formulario.email"
+                  x-on:input="validar('email')"
+                  x-on:focusout.once="tocar('email')"
+                />
+                <template x-if="erros.email && tocado.email">
+                  <p x-text="erros.email"></p>
+                </template>
+              </label>
+
+              <label
+                for="nascimento"
+                x-bind:class="{ erro: erros.nascimento && tocado.nascimento }"
+              >
+                Nascimento
+                <input
+                  type="text"
+                  id="nascimento"
+                  autocomplete="bday"
+                  placeholder="dd/mm/aaaa"
+                  x-model="formulario.nascimento"
+                  x-on:input="validar('nascimento')"
+                  x-on:focusout.once="tocar('nascimento')"
+                />
+                <template x-if="erros.nascimento && tocado.nascimento">
+                  <p x-text="erros.nascimento"></p>
+                </template>
+              </label>
+
+              <label for="estado">
+                Estado
+                <select
+                  id="estado"
+                  autocomplete="address-level1"
+                  x-model="formulario.estado"
+                  x-on:change="mudarEstado()"
+                >
+                  <option value=""></option>
+                  <option value="AC">Acre</option>
+                  <option value="AL">Alagoas</option>
+                  <option value="AM">Amazonas</option>
+                  <option value="AP">Amapá</option>
+                  <option value="BA">Bahia</option>
+                  <option value="CE">Ceará</option>
+                  <option value="DF">Distrito Federal</option>
+                  <option value="ES">Espírito Santo</option>
+                  <option value="GO">Goiás</option>
+                  <option value="MA">Maranhão</option>
+                  <option value="MG">Minas Gerais</option>
+                  <option value="MS">Mato Grosso do Sul</option>
+                  <option value="MT">Mato Grosso</option>
+                  <option value="PA">Pará</option>
+                  <option value="PB">Paraíba</option>
+                  <option value="PE">Pernambuco</option>
+                  <option value="PI">Piauí</option>
+                  <option value="PR">Paraná</option>
+                  <option value="RJ">Rio de Janeiro</option>
+                  <option value="RN">Rio Grande do Norte</option>
+                  <option value="RO">Rondônia</option>
+                  <option value="RR">Roraima</option>
+                  <option value="RS">Rio Grande do Sul</option>
+                  <option value="SC">Santa Catarina</option>
+                  <option value="SE">Sergipe</option>
+                  <option value="SP">São Paulo</option>
+                  <option value="TO">Tocantins</option>
+                </select>
+              </label>
+
+              <label
+                for="cidade"
+                x-bind:class="{
+                desativado: !formulario.estado,
+                erro: erros.cidade && tocado.cidade
+              }"
+              >
+                Cidade
+                <input
+                  type="text"
+                  id="cidade"
+                  autocomplete="address-level2"
+                  x-model="formulario.cidade"
+                  x-on:input="validar('cidade')"
+                  x-on:focusout.once="tocar('cidade')"
+                  x-bind:disabled="!formulario.estado"
+                />
+                <template x-if="erros.cidade && tocado.cidade">
+                  <p x-text="erros.cidade"></p>
+                </template>
+              </label>
+
+              <label for="libras" class="checkbox">
+                <input
+                  type="checkbox"
+                  id="libras"
+                  x-model="formulario.libras"
+                />
+                Necessito de intérprete de Libras
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Oficinas</legend>
+
+              <div
+                class="carregamento"
+                x-show="data.activities.length === 0"
+              ></div>
+
+              <template x-for="oficina in data.activities" :key="oficina.id">
+                <label
+                  x-bind:for="'oficina-' + oficina.id"
+                  x-bind:class="{
+                  desativado: oficina._conflito || false,
+                  esgotado: !oficina['vacancies-available'],
+                  checkbox: true
+                }"
+                >
+                  <input
+                    type="checkbox"
+                    x-bind:id="'oficina-' + oficina.id"
+                    x-bind:value="oficina.id"
+                    x-bind:disabled="oficina._conflito || !oficina['vacancies-available']"
+                    x-on:change="processarOficinas"
+                    x-model="formulario.atividades"
+                  />
+                  <span x-text="oficina.title"></span>
+                </label>
+              </template>
+            </fieldset>
+
+            <button type="submit" x-bind:class="{ carregando }">
+              Inscrever
+            </button>
+            <p class="erro" x-show="erro" x-text="erro"></p>
+          </form>
+        </template>
+
+        <template x-if="sucesso">
+          <section class="recursos">
+            <section class="recurso">
+              <svg viewBox="0 0 20 18">
+                <g class="icone">
+                  <circle cx="8" cy="8" r="8" />
+                  <path d="M18 0L8 10zM5 7l3 3z" />
+                </g>
+              </svg>
+              <p>Você se inscreveu no CONVEP 2020.</p>
+            </section>
+            <section class="recurso">
+              <p>
+                Nossas mesas redondas serão transmitidas ao vivo pelo YouTube.
+              </p>
+              <a
+                href="https://www.youtube.com/channel/UCUpuRnUQFqYRsI6Yb4b-j-Q"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Inscrever-se no canal
+              </a>
+            </section>
+            <section class="recurso">
+              <svg viewBox="0 0 18 18">
+                <g class="icone">
+                  <circle cx="8" cy="8" r="8" />
+                  <circle
+                    cx="3"
+                    cy="3"
+                    r="3"
+                    transform="translate(5 5)"
+                    stroke-dasharray="3"
+                  />
+                </g>
+              </svg>
+              <p>Participe também de nossa divulgação científica.</p>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSc_RTvTGBmtjzjQBxLWeJ00RpzhG--kReTDcyaqee5yrT7CoQ/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Enviar minha contribuição</a
+              >
+            </section>
+            <section class="recurso">
+              <svg viewBox="0 0 16 14">
+                <path
+                  d="M7.13 1.52a1 1 0 011.74 0l6.28 10.98a1 1 0 01-.87 1.5H1.72a1 1 0 01-.86-1.5z"
+                  fill="none"
+                />
+                <path
+                  d="M8 4.03L3.45 12h9.1L8 4.03m0-3.01c.34 0 .68.16.87.5l6.28 10.98a1 1 0 01-.87 1.5H1.72a1 1 0 01-.87-1.5L7.13 1.52c.2-.34.53-.5.87-.5z"
+                  fill="#323232"
+                />
+              </svg>
+              <p>Nosso sarau está aberto.</p>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSc44SZZTmoqPHfQti73CziU3ryStFtWSICsdqoTGqVMOo7XXg/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Participar do sarau</a
+              >
+            </section>
+          </section>
+        </template>
+      </section>
+    </main>
+
+    <footer>
+      <ul id="redes-sociais">
+        <li>
+          <a
+            href="http://facebook.com/convep.ufsj"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="../assets/img/facebook.svg" alt="Facebook" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/channel/UCUpuRnUQFqYRsI6Yb4b-j-Q"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="../assets/img/youtube.svg" alt="YouTube" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="http://instagram.com/convep.ufsj"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="../assets/img/instagram.svg" alt="Instagram" />
+          </a>
+        </li>
+      </ul>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.68 12.4">
+        <path
+          d="M1.08 8.22a12.24 12.24 0 007.01-1.4 5.91 5.91 0 002.81-2.8c.38-.95.6-2.43 0-2.82-.63-.4-2.04.44-2.8 1.4a6.35 6.35 0 000 7.02c2.28 2.84 9.6 1.67 18.24-2.8"
+          fill="none"
+          stroke="#a9a9a9"
+          stroke-linecap="round"
+          stroke-miterlimit="10"
+          stroke-width="2"
+        />
+      </svg>
+      <p>
+        Feito, em quarentena, por estudantes de Psicologia da Universidade
+        Federal de São João del-Rei (UFSJ).
+      </p>
+      <ol>
+        <li>Alice Cristina Amaro Ferreira</li>
+        <li>Camila Benvindo Pinheiro</li>
+        <li>Carla Gomes Delbem Peixoto</li>
+        <li>Celso Francisco Tondin</li>
+        <li>Clara da Mata Anselmé</li>
+        <li>Daniel Sarsi Orta</li>
+        <li>Juliana Dela-Sávia</li>
+        <li>Juliana Gabriela Vieira Passos</li>
+        <li>Laura Santana Marques</li>
+        <li>Letícia Menezes Silva</li>
+        <li>Luísa Marcondes Santos Monteiro</li>
+        <li>Maria Eduarda Benedito Diláscio</li>
+        <li>Maria Paula Batista Martins</li>
+        <li>Marina Prenazzi de Almeida</li>
+        <li>Milena Bittencourt Roque</li>
+        <li>Milena de Paula Q. R. Fonseca</li>
+        <li>Núbia Vale Rodrigues</li>
+        <li>Otávio Barra Vianna Vital</li>
+        <li>Roberta Silvério Ribeiro</li>
+      </ol>
+      <ul id="apoio">
+        <li>
+          <a
+            href="https://facebook.com/capsiufsj"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="../assets/img/ca.svg"
+              alt='Centro Acadêmico de Psicologia "Ana Regina Felipe Ziller"'
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://ufsj.edu.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="../assets/img/ufsj.svg"
+              alt="Universidade Federal de São João del-Rei (UFSJ)"
+            />
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

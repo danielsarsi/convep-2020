@@ -140,3 +140,35 @@ main + footer > svg {
 #apoio img {
   height: 100%;
 }
+
+.icone {
+  fill: none;
+  stroke: var(--cinza);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  stroke-width: 2;
+  transform: translate(1px, 1px);
+}
+
+.recursos {
+  margin: 9rem 0;
+  line-height: 1.5;
+}
+
+.recurso {
+  max-width: 18rem;
+  margin: 4rem auto;
+}
+
+.recurso svg {
+  height: 1rem;
+}
+
+.recurso p {
+  margin: 0.5rem 0;
+}
+
+strong {
+  font-weight: 400;
+}
