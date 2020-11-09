@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/danielsarsi/convep-2020/compare/v1.1.0...v1.1.1) (2020-11-09)
+
+
+### Bug Fixes
+
+* **inscrição:** aprimora o formulário de inscrição ([ccb10bd](https://github.com/danielsarsi/convep-2020/commit/ccb10bd121da71347e6f25708cd0ab215850ec59))
+
 ## [1.1.0](https://github.com/danielsarsi/convep-2020/compare/v1.0.3...v1.1.0) (2020-11-09)
 
 
