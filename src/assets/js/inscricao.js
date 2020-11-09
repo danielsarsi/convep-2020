@@ -124,6 +124,19 @@ function inscricao() {
       this.data.activities = await activities.json();
     },
     async enviar() {
+      for (const f of Object.keys(this.tocado)) {
+        this.validar(f);
+        this.tocado[f] = true;
+      }
+
+      for (const [_, e] of Object.entries(this.erros)) {
+        if (e) {
+          this.erro =
+            "Houve erros de validação. Verifique se inseriu os dados corretamente.";
+          return;
+        }
+      }
+
       this.erro = "";
       this.carregando = true;
 
@@ -173,6 +186,7 @@ function inscricao() {
         }
       } else {
         this.sucesso = true;
+        window.scrollTo(0, this.$refs.inscricao.offsetTop);
       }
     },
     erro: "",

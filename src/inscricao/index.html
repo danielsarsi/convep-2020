@@ -89,7 +89,12 @@
         </p>
       </section>
 
-      <section id="inscricao" x-data="inscricao()" x-init="init()">
+      <section
+        id="inscricao"
+        x-data="inscricao()"
+        x-init="init()"
+        x-ref="inscricao"
+      >
         <template x-if="!sucesso">
           <form novalidate x-on:submit.prevent="enviar()">
             <fieldset>
