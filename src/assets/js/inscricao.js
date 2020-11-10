@@ -1,9 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 function inscricao() {
   return {
     data: {
       activities: [],
     },
-    carregando: false,
     formulario: {
       nome: "",
       email: "",
@@ -13,23 +13,76 @@ function inscricao() {
       libras: false,
       atividades: [],
     },
-    erros: {
-      nome: "",
-      email: "",
-      nascimento: "",
-      cidade: "",
-    },
-    tocado: {
-      nome: false,
-      email: false,
-      nascimento: false,
-      cidade: false,
+    validacao: {
+      nome: {
+        tocado: false,
+        erro: "",
+      },
+      email: {
+        tocado: false,
+        erro: "",
+      },
+      nascimento: {
+        tocado: false,
+        erro: "",
+      },
+      cidade: {
+        tocado: false,
+        erro: "",
+      },
     },
     tocar(f) {
-      this.tocado[f] = true;
+      this.validacao[f].tocado = true;
       this.validar(f);
     },
-    mudarEstado() {
+    validar(f) {
+      const valor = this.formulario[f];
+      const validacao = this.validacao[f];
+
+      switch (f) {
+        case "nome":
+          if (!valor) {
+            validacao.erro = "O nome é obrigatório.";
+          } else {
+            validacao.erro = "";
+          }
+          break;
+        case "cidade":
+          if (this.formulario.estado && !valor) {
+            validacao.erro = "A cidade é obrigatória.";
+          } else {
+            validacao.erro = "";
+          }
+          break;
+        case "email": {
+          const regex = new RegExp("^\\S+@\\S+[\\.][0-9a-z]+$");
+
+          if (!valor) {
+            validacao.erro = "O e-mail é obrigatório.";
+          } else if (!regex.test(valor)) {
+            validacao.erro = "O e-mail precisa ser válido.";
+          } else {
+            validacao.erro = "";
+          }
+          break;
+        }
+        case "nascimento": {
+          const regex = /(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19[0-8]\d|199\d|200\d|201\d)/;
+
+          if (valor && !regex.test(valor)) {
+            validacao.erro = "O data precisa ser válida.";
+          } else {
+            validacao.erro = "";
+          }
+
+          break;
+        }
+        default:
+          validacao.erro = "";
+          break;
+      }
+    },
+    estado() {
       if (this.formulario.estado === "DF") {
         this.formulario.cidade = "Brasília";
       } else {
@@ -38,7 +91,7 @@ function inscricao() {
 
       this.validar("cidade");
     },
-    processarOficinas(e) {
+    oficinas(e) {
       const oficinaSelecionada = this.data.activities.find(
         (v) => v.id === +e.target.value
       );
@@ -69,53 +122,6 @@ function inscricao() {
         }
       }
     },
-    validar(f) {
-      const valor = this.formulario[f];
-      const erros = this.erros;
-
-      switch (f) {
-        case "nome":
-          if (!valor) {
-            erros[f] = "O nome é obrigatório.";
-          } else {
-            erros[f] = "";
-          }
-          break;
-        case "cidade":
-          if (this.formulario.estado && !valor) {
-            erros[f] = "A cidade é obrigatória.";
-          } else {
-            erros[f] = "";
-          }
-          break;
-        case "email": {
-          const regex = new RegExp("^\\S+@\\S+[\\.][0-9a-z]+$");
-
-          if (!valor) {
-            erros[f] = "O e-mail é obrigatório.";
-          } else if (!regex.test(valor)) {
-            erros[f] = "O e-mail precisa ser válido.";
-          } else {
-            erros[f] = "";
-          }
-          break;
-        }
-        case "nascimento": {
-          const regex = /(0[1-9]|1[0-9]|2[0-9]|3[0-1])[/](0[1-9]|1[0-2])[/](19[0-8][0-9]|199[0-9]|200[0-9]|201[0-9])/;
-
-          if (valor && !regex.test(valor)) {
-            erros[f] = "O data precisa ser válida.";
-          } else {
-            erros[f] = "";
-          }
-
-          break;
-        }
-        default:
-          erros[f] = "";
-          break;
-      }
-    },
     async init() {
       const activities = await fetch(
         "https://capsideo.convep.org/activities/enrollment"
@@ -124,17 +130,20 @@ function inscricao() {
       this.data.activities = await activities.json();
     },
     async enviar() {
-      for (const f of Object.keys(this.tocado)) {
-        this.validar(f);
-        this.tocado[f] = true;
+      let erros = false;
+      for (const [campo, valor] of Object.entries(this.validacao)) {
+        valor.tocado = true;
+        this.validar(campo);
+
+        if (valor.erro) {
+          erros = true;
+        }
       }
 
-      for (const [_, e] of Object.entries(this.erros)) {
-        if (e) {
-          this.erro =
-            "Houve erros de validação. Verifique se inseriu os dados corretamente.";
-          return;
-        }
+      if (erros) {
+        this.erro =
+          "Algumas informações não foram inseridas corretamente. Por favor, verifique no formulário.";
+        return;
       }
 
       this.erro = "";
@@ -168,28 +177,31 @@ function inscricao() {
       });
 
       const response = await result.json();
+      this.carregando = false;
 
       if (result.status !== 201) {
-        this.carregando = false;
-
         switch (response.code) {
           case 2:
             this.erro =
-              "Houve erros de validação. Verifique se inseriu os dados corretamente.";
+              "Algumas informações não foram inseridas corretamente. Por favor, verifique no formulário.";
             break;
           case 5:
-            this.erro = "O e-mail já está sendo utilizado.";
+            this.erro =
+              "O e-mail já está sendo utilizado por outro participante. Por favor, escolha um e-mail diferente.";
             break;
           default:
             this.erro = "Ocorreu um erro. Tente novamente mais tarde.";
             break;
         }
-      } else {
-        this.sucesso = true;
-        window.scrollTo(0, this.$refs.inscricao.offsetTop);
+
+        return;
       }
+
+      this.sucesso = true;
+      window.scrollTo(0, this.$refs.inscricao.offsetTop);
     },
     erro: "",
     sucesso: false,
+    carregando: false,
   };
 }

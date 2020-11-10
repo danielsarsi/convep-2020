@@ -102,7 +102,9 @@
 
               <label
                 for="name"
-                x-bind:class="{ erro: erros.nome && tocado.nome }"
+                x-bind:class="{
+                  erro: validacao.nome.erro && validacao.nome.tocado
+                }"
               >
                 Nome
                 <input
@@ -113,14 +115,16 @@
                   x-on:input="validar('nome')"
                   x-on:focusout="tocar('nome')"
                 />
-                <template x-if="erros.nome && tocado.nome">
-                  <p x-text="erros.nome"></p>
+                <template x-if="validacao.nome.erro && validacao.nome.tocado">
+                  <p x-text="validacao.nome.erro"></p>
                 </template>
               </label>
 
               <label
                 for="email"
-                x-bind:class="{ erro: erros.email && tocado.email }"
+                x-bind:class="{
+                  erro: validacao.email.erro && validacao.email.tocado
+                }"
               >
                 E-mail
                 <input
@@ -131,14 +135,16 @@
                   x-on:input="validar('email')"
                   x-on:focusout.once="tocar('email')"
                 />
-                <template x-if="erros.email && tocado.email">
-                  <p x-text="erros.email"></p>
+                <template x-if="validacao.email.erro && validacao.email.tocado">
+                  <p x-text="validacao.email.erro"></p>
                 </template>
               </label>
 
               <label
                 for="nascimento"
-                x-bind:class="{ erro: erros.nascimento && tocado.nascimento }"
+                x-bind:class="{
+                  erro: validacao.nascimento.erro && validacao.nascimento.tocado
+                }"
               >
                 Nascimento
                 <input
@@ -150,8 +156,10 @@
                   x-on:input="validar('nascimento')"
                   x-on:focusout.once="tocar('nascimento')"
                 />
-                <template x-if="erros.nascimento && tocado.nascimento">
-                  <p x-text="erros.nascimento"></p>
+                <template
+                  x-if="validacao.nascimento.erro && validacao.nascimento.tocado"
+                >
+                  <p x-text="validacao.nascimento.erro"></p>
                 </template>
               </label>
 
@@ -161,7 +169,7 @@
                   id="estado"
                   autocomplete="address-level1"
                   x-model="formulario.estado"
-                  x-on:change="mudarEstado()"
+                  x-on:change="estado()"
                 >
                   <option value=""></option>
                   <option value="AC">Acre</option>
@@ -197,9 +205,9 @@
               <label
                 for="cidade"
                 x-bind:class="{
-                desativado: !formulario.estado,
-                erro: erros.cidade && tocado.cidade
-              }"
+                  desativado: !formulario.estado,
+                  erro: validacao.cidade.erro && validacao.cidade.tocado
+                }"
               >
                 Cidade
                 <input
@@ -211,8 +219,10 @@
                   x-on:focusout.once="tocar('cidade')"
                   x-bind:disabled="!formulario.estado"
                 />
-                <template x-if="erros.cidade && tocado.cidade">
-                  <p x-text="erros.cidade"></p>
+                <template
+                  x-if="validacao.cidade.erro && validacao.cidade.tocado"
+                >
+                  <p x-text="validacao.cidade.erro"></p>
                 </template>
               </label>
 
@@ -238,17 +248,17 @@
                 <label
                   x-bind:for="'oficina-' + oficina.id"
                   x-bind:class="{
-                  desativado: oficina._conflito || false,
-                  esgotado: !oficina['vacancies-available'],
-                  checkbox: true
-                }"
+                    desativado: oficina._conflito || false,
+                    esgotado: oficina['vacancies-available'] === 0,
+                    checkbox: true
+                  }"
                 >
                   <input
                     type="checkbox"
                     x-bind:id="'oficina-' + oficina.id"
                     x-bind:value="oficina.id"
-                    x-bind:disabled="oficina._conflito || !oficina['vacancies-available']"
-                    x-on:change="processarOficinas"
+                    x-bind:disabled="oficina._conflito || oficina['vacancies-available'] === 0"
+                    x-on:change="oficinas"
                     x-model="formulario.atividades"
                   />
                   <span x-text="oficina.title"></span>
