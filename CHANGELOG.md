@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/danielsarsi/convep-2020/compare/v1.1.3...v1.1.4) (2020-11-10)
+
+
+### Bug Fixes
+
+* **programação:** atualiza mesas e oficinas ([1fc7183](https://github.com/danielsarsi/convep-2020/commit/1fc7183c6830100bf477f049fd08166c0357e459))
+* corrige URL do favicon nas páginas de programação e inscrição ([dfa385f](https://github.com/danielsarsi/convep-2020/commit/dfa385f39bbc3f0c464ead5614544e4360e2da38))
+
 ### [1.1.3](https://github.com/danielsarsi/convep-2020/compare/v1.1.2...v1.1.3) (2020-11-10)
 
 
