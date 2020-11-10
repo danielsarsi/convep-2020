@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/danielsarsi/convep-2020/compare/v1.1.2...v1.1.3) (2020-11-10)
+
+
+### Bug Fixes
+
+* remove Babel, por enquanto ([1299bf2](https://github.com/danielsarsi/convep-2020/commit/1299bf2fb03774323420f19afc3bf24571c085bf))
+
 ### [1.1.2](https://github.com/danielsarsi/convep-2020/compare/v1.1.1...v1.1.2) (2020-11-10)
 
 
