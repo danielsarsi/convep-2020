@@ -1,7 +1,6 @@
 const { series, src, dest } = require("gulp");
 const postcss = require("gulp-postcss");
 const posthtml = require("gulp-posthtml");
-const babel = require("gulp-babel");
 const terser = require("gulp-terser");
 
 function vendor() {
@@ -29,10 +28,7 @@ function html() {
 }
 
 function js() {
-  return src("./src/assets/**/*.js")
-    .pipe(babel())
-    .pipe(terser())
-    .pipe(dest("./dist/assets"));
+  return src("./src/assets/**/*.js").pipe(terser()).pipe(dest("./dist/assets"));
 }
 
 exports.css = css;
