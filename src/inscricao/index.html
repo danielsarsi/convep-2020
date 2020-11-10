@@ -239,6 +239,11 @@
             <fieldset>
               <legend>Oficinas</legend>
 
+              <p>
+                Escolha no máximo até 3 oficinas. As oficinas com vagas
+                esgotadas são apresentadas com um risco.
+              </p>
+
               <div
                 class="carregamento"
                 x-show="data.activities.length === 0"
@@ -258,7 +263,7 @@
                     x-bind:id="'oficina-' + oficina.id"
                     x-bind:value="oficina.id"
                     x-bind:disabled="oficina._conflito || oficina['vacancies-available'] === 0"
-                    x-on:change="oficinas"
+                    x-on:change="oficinas()"
                     x-model="formulario.atividades"
                   />
                   <span x-text="oficina.title"></span>

@@ -1,3 +1,5 @@
+const MAX_ATIVIDADES = 3;
+
 // eslint-disable-next-line no-unused-vars
 function inscricao() {
   return {
@@ -91,32 +93,40 @@ function inscricao() {
 
       this.validar("cidade");
     },
-    oficinas(e) {
-      const oficinaSelecionada = this.data.activities.find(
-        (v) => v.id === +e.target.value
+    oficinas() {
+      const oficinasSelecionadas = this.data.activities.filter((v) =>
+        this.formulario.atividades.includes("" + v.id)
       );
 
-      const outrasOficinas = this.data.activities.filter((v) => {
-        return (
-          !this.formulario.atividades.includes("" + v.id) &&
-          v.id !== +e.target.value
-        );
-      });
+      const oficinasMenosSelecionadas = this.data.activities.filter(
+        (v) => !this.formulario.atividades.includes("" + v.id)
+      );
 
-      for (const episodio of oficinaSelecionada.episodes) {
-        const start = new Date(episodio.start);
-        const end = new Date(episodio.end);
+      for (const naoSelecionada of oficinasMenosSelecionadas) {
+        if (this.formulario.atividades.length === MAX_ATIVIDADES) {
+          naoSelecionada._conflito = true;
+          continue;
+        }
 
-        for (const outraOficina of outrasOficinas) {
-          for (const outroEpisodio of outraOficina.episodes) {
-            const outroStart = new Date(outroEpisodio.start);
-            const outroEnd = new Date(outroEpisodio.end);
+        naoSelecionada._conflito = false;
 
-            const comparacao = start < outroEnd && outroStart < end;
+        for (const naoSelecionadaEpisodio of naoSelecionada.episodes) {
+          const naoSelecionadaInicio = new Date(naoSelecionadaEpisodio.start);
+          const naoSelecionadaFim = new Date(naoSelecionadaEpisodio.end);
 
-            if (comparacao) {
-              outraOficina._conflito = e.target.checked;
-              break;
+          for (const selecionada of oficinasSelecionadas) {
+            for (const selecionadaEpisodio of selecionada.episodes) {
+              const selecionadaInicio = new Date(selecionadaEpisodio.start);
+              const selecionadaFim = new Date(selecionadaEpisodio.end);
+
+              const comparacao =
+                selecionadaInicio < naoSelecionadaFim &&
+                naoSelecionadaInicio < selecionadaFim;
+
+              if (comparacao) {
+                naoSelecionada._conflito = true;
+                break;
+              }
             }
           }
         }
