@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.7](https://github.com/danielsarsi/convep-2020/compare/v1.1.6...v1.1.7) (2020-11-26)
+
+
+### Bug Fixes
+
+* **programação:** atualiza programação ([dad52b2](https://github.com/danielsarsi/convep-2020/commit/dad52b27918469c82a66ad4f7f4029a50b1e6917))
+* **programação:** atualiza programação ([3cd4b26](https://github.com/danielsarsi/convep-2020/commit/3cd4b2678bafddb6366aee0f5fcada5d9fe44d57))
+
 ### [1.1.6](https://github.com/danielsarsi/convep-2020/compare/v1.1.5...v1.1.6) (2020-11-20)
 
 
