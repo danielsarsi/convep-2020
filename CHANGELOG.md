@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.10](https://github.com/danielsarsi/convep-2020/compare/v1.1.9...v1.1.10) (2020-12-02)
+
+
+### Bug Fixes
+
+* **programação:** altera nome de convidada ([867ea1b](https://github.com/danielsarsi/convep-2020/commit/867ea1b4a70a81e63d828d43f8ab1253b4d0c1c9))
+
 ### [1.1.9](https://github.com/danielsarsi/convep-2020/compare/v1.1.8...v1.1.9) (2020-11-30)
 
 
